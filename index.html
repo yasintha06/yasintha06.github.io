@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yasintha Agampodi — Computing Systems</title>
+<meta name="description" content="Portfolio of Yasintha Agampodi — cloud, full-stack, security and embedded systems projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#7FA8DE;
+    --navy-deep:#9CC0F0;
+    --ink:#EDEFF3;
+    --slate:#96A1B0;
+    --paper:#0F1520;
+    --mist:#161D2A;
+    --mist-2:#1B2331;
+    --line:#28313F;
+    --gold:#D6A756;
+    --gold-soft:rgba(214,167,86,0.14);
+    --radius:10px;
+    --maxw:1040px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -8%, rgba(214,167,86,0.09), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 90% 10%, rgba(127,168,222,0.07), transparent 55%),
+      linear-gradient(180deg, #0F1520 0%, #0C111A 100%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  body::after{
+    content:"";
+    position:fixed; inset:0;
+    z-index:0;
+    pointer-events:none;
+    opacity:0.5;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  }
+  header.nav, main, footer{position:relative; z-index:1;}
+  ::selection{background:var(--gold-soft); color:var(--ink);}
+  a{color:inherit;}
+  .serif{font-family:'Fraunces',Georgia,serif;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .eyebrow{
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:0 0 14px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px; height:1px;
+    background:var(--gold);
+    display:inline-block;
+  }
+
+  /* Nav */
+  header.nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(12,17,26,0.78);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .navrow{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:var(--maxw); margin:0 auto;
+  }
+  .brandwrap{display:flex; align-items:center; gap:11px; text-decoration:none;}
+  .monogram{
+    width:34px; height:34px; border-radius:50%;
+    background:linear-gradient(135deg, var(--gold), #8C6428);
+    color:#241A08;
+    font-family:'Fraunces',serif; font-weight:700; font-size:14px;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 2px 8px rgba(214,167,86,0.35);
+    flex-shrink:0;
+  }
+  .navrow .brand{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:17px;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  nav.links{display:flex; gap:30px; align-items:center;}
+  nav.links a{
+    font-size:14px;
+    font-weight:500;
+    text-decoration:none;
+    color:var(--slate);
+    transition:color .15s ease;
+  }
+  nav.links a:hover, nav.links a:focus-visible{color:var(--navy);}
+  nav.links a.cta{
+    color:#1a1305;
+    background:linear-gradient(135deg, var(--gold), #C79448);
+    padding:9px 18px;
+    border-radius:6px;
+    font-weight:700;
+    box-shadow:0 3px 12px rgba(214,167,86,0.25);
+  }
+  nav.links a.cta:hover{box-shadow:0 4px 16px rgba(214,167,86,0.4); transform:translateY(-1px);}
+  @media (max-width:640px){
+    nav.links{gap:16px;}
+    nav.links a:not(.cta){display:none;}
+  }
+
+  section{position:relative;}
+
+  /* Hero */
+  .hero{padding:88px 0 0; position:relative;}
+  .hero::before{
+    content:"";
+    position:absolute; top:-60px; left:50%; transform:translateX(-50%);
+    width:640px; height:420px;
+    background:radial-gradient(ellipse at center, rgba(214,167,86,0.10), transparent 70%);
+    pointer-events:none; z-index:-1;
+  }
+  h1.headline{
+    font-family:'Fraunces',Georgia,serif;
+    font-weight:600;
+    font-size:clamp(34px, 4.8vw, 54px);
+    line-height:1.14;
+    letter-spacing:-0.01em;
+    margin:0 0 22px;
+    max-width:15ch;
+    color:var(--ink);
+  }
+  h1.headline em{font-style:italic; color:var(--navy); font-weight:500;}
+  .lede{
+    color:var(--slate);
+    font-size:17.5px;
+    max-width:58ch;
+    margin:0 0 36px;
+  }
+  .cta-row{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:60px;}
+  .btn{
+    font-size:14px;
+    font-weight:600;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:7px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:background .15s ease, border-color .15s ease, color .15s ease, transform .15s ease;
+    border:1px solid var(--line);
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{
+    background:linear-gradient(135deg, var(--gold), #C79448);
+    color:#1a1305; border-color:transparent;
+    box-shadow:0 4px 16px rgba(214,167,86,0.22);
+  }
+  .btn-primary:hover{box-shadow:0 6px 22px rgba(214,167,86,0.38);}
+  .btn-ghost{background:rgba(255,255,255,0.02); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--gold); color:var(--gold); background:rgba(255,255,255,0.04);}
+
+  /* Signal path — signature graphic: 4 real domains, not decoration */
+  .signalpath{padding:0 0 76px;}
+  .signalpath svg{display:block; width:100%; height:auto;}
+  .sp-line{
+    fill:none; stroke:var(--line); stroke-width:2;
+  }
+  .sp-line-draw{
+    fill:none; stroke:var(--navy); stroke-width:2;
+    stroke-dasharray:640; stroke-dashoffset:640;
+    animation:sp-draw 1.6s cubic-bezier(.4,0,.2,1) .15s forwards;
+  }
+  @keyframes sp-draw{ to{stroke-dashoffset:0;} }
+  .sp-node{ fill:var(--paper); stroke:var(--navy); stroke-width:2; }
+  .sp-node.gold{ stroke:var(--gold); }
+  .sp-label{
+    font-family:'Inter',sans-serif; font-size:12.5px; font-weight:600;
+    fill:var(--ink); text-anchor:middle;
+  }
+  .sp-sub{
+    font-family:'Inter',sans-serif; font-size:10.5px; font-weight:500;
+    fill:var(--slate); text-anchor:middle; text-transform:uppercase; letter-spacing:0.04em;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .sp-line-draw{animation:none; stroke-dashoffset:0;}
+  }
+
+  /* Stat row */
+  .stats{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 10px 28px rgba(0,0,0,0.25);
+    margin-bottom:76px;
+  }
+  .stat{ background:var(--mist-2); padding:22px 20px; }
+  .stat .num{
+    font-family:'Fraunces',serif;
+    font-size:28px; font-weight:600; color:var(--navy);
+    display:block; margin-bottom:4px;
+    letter-spacing:-0.01em;
+  }
+  .stat .label{font-size:12.5px; color:var(--slate); line-height:1.4;}
+  @media (max-width:700px){ .stats{grid-template-columns:1fr 1fr;} }
+
+  /* Section shell */
+  .section{padding:68px 0;}
+  .section.alt{background:var(--mist);}
+  .section-head{margin-bottom:38px;}
+  h2.section-title{
+    font-family:'Fraunces',serif;
+    font-size:28px; font-weight:600; margin:0;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .rule{border:none; border-top:1px solid var(--line); margin:0;}
+
+  /* About */
+  .about-grid p{color:var(--slate); font-size:16.5px; max-width:70ch;}
+
+  /* Projects */
+  .projects{display:flex; flex-direction:column; gap:16px;}
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0) 40%), var(--mist-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px 28px 26px;
+    display:grid;
+    grid-template-columns:52px 1fr;
+    gap:22px;
+    box-shadow:0 1px 0 rgba(255,255,255,0.03) inset, 0 8px 20px rgba(0,0,0,0.22);
+    transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  }
+  .card:hover{
+    border-color:var(--gold);
+    box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 14px 32px rgba(0,0,0,0.4);
+    transform:translateY(-2px);
+  }
+  .card .icon{
+    width:52px; height:52px;
+    border-radius:50%;
+    background:var(--mist);
+    border:1px solid var(--line);
+    box-shadow:0 2px 6px rgba(0,0,0,0.3) inset;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .card .icon svg{width:26px; height:26px;}
+  .card-top{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;
+    margin-bottom:8px;
+  }
+  .card h3{margin:0; font-size:19px; font-weight:700; color:var(--ink); font-family:'Fraunces',serif;}
+  .card .tag{
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    color:var(--gold);
+    background:var(--gold-soft);
+    border-radius:20px;
+    padding:4px 12px;
+    white-space:nowrap;
+  }
+  .card p.desc{color:var(--slate); font-size:15px; margin:0 0 16px; max-width:68ch;}
+  .tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;}
+  .chip{
+    font-size:12px;
+    font-weight:500;
+    color:var(--ink);
+    background:var(--mist);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:5px 12px;
+  }
+  .card .link{
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--navy);
+    text-decoration:none;
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .card .link:hover{color:var(--gold);}
+  .card .link.disabled{color:var(--slate); pointer-events:none; font-weight:500;}
+  @media (max-width:600px){
+    .card{grid-template-columns:1fr;}
+    .card .icon{display:none;}
+  }
+
+  /* Skills */
+  .skills-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px;}
+  .skills-group h4{
+    font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--slate); margin:0 0 14px; font-weight:600;
+  }
+  .chipwrap{display:flex; flex-wrap:wrap; gap:8px;}
+  @media (max-width:760px){ .skills-grid{grid-template-columns:1fr;} }
+
+  /* Education */
+  .edu-item{
+    display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    padding:18px 0; border-bottom:1px solid var(--line);
+  }
+  .edu-item:last-child{border-bottom:none;}
+  .edu-item h4{margin:0 0 4px; font-size:16px; font-weight:700; color:var(--ink); font-family:'Fraunces',serif;}
+  .edu-item p{margin:0; color:var(--slate); font-size:14px;}
+  .edu-item .when{
+    font-size:13.5px; color:var(--slate); font-weight:500;
+    white-space:nowrap;
+  }
+
+  /* Contact / footer */
+  .contact{
+    text-align:center;
+    padding:76px 0 60px;
+  }
+  .contact h2{
+    font-family:'Fraunces',serif;
+    font-size:32px; margin:0 0 14px; font-weight:600; color:var(--ink);
+  }
+  .contact p{color:var(--slate); max-width:46ch; margin:0 auto 30px;}
+  .contact .cta-row{justify-content:center; margin-bottom:0;}
+  footer{
+    padding:26px 0 44px;
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+  footer p{ font-size:12.5px; color:var(--slate); margin:0; }
+
+  :focus-visible{outline:2px solid var(--navy); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="navrow">
+    <a href="#top" class="brandwrap">
+      <span class="monogram">YA</span>
+      <span class="brand">Yasintha Agampodi</span>
+    </a>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a class="cta" href="mailto:yasinthalakshan06@gmail.com">Email</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Final-year BSc (Hons) Computing Systems · Ulster University, London</p>
+      <h1 class="headline">Software engineer, building across cloud, web <em>and</em> embedded systems.</h1>
+      <p class="lede">I like writing software that reacts to what's actually happening — a packet stream, a vibration, an image upload — not just what's expected. That's meant working across four connected domains rather than staying in one lane.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projects">View projects</a>
+        <a class="btn btn-ghost" href="https://github.com/yasintha06" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/yasintha-lakshan-a416a1325" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- Signal path signature: the 4 real domains this portfolio covers -->
+    <div class="wrap signalpath">
+      <svg viewBox="0 0 900 100" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A line connecting four domains: cloud, full-stack, security, and embedded systems">
+        <line class="sp-line" x1="60" y1="40" x2="840" y2="40"/>
+        <path class="sp-line-draw" d="M60,40 L840,40"/>
+        <circle class="sp-node gold" cx="60" cy="40" r="7"/>
+        <text class="sp-sub" x="60" y="20">01</text>
+        <text class="sp-label" x="60" y="70">Cloud</text>
+
+        <circle class="sp-node" cx="320" cy="40" r="7"/>
+        <text class="sp-sub" x="320" y="20">02</text>
+        <text class="sp-label" x="320" y="70">Full-stack</text>
+
+        <circle class="sp-node" cx="580" cy="40" r="7"/>
+        <text class="sp-sub" x="580" y="20">03</text>
+        <text class="sp-label" x="580" y="70">Security</text>
+
+        <circle class="sp-node" cx="840" cy="40" r="7"/>
+        <text class="sp-sub" x="840" y="20">04</text>
+        <text class="sp-label" x="840" y="70">Embedded</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><span class="num">4</span><span class="label">Shipped projects, cloud to embedded</span></div>
+        <div class="stat"><span class="num">36/36</span><span class="label">Unit tests passing — DevHire</span></div>
+        <div class="stat"><span class="num">&lt;100ms</span><span class="label">On-device inference — PropGuard</span></div>
+        <div class="stat"><span class="num">3</span><span class="label">Azure services — PixelShare</span></div>
+      </div>
+      <div class="section-head">
+        <p class="eyebrow">About</p>
+        <h2 class="section-title">Background</h2>
+      </div>
+      <div class="about-grid">
+        <p>I'm a final-year Computing Systems student at Ulster University's London campus. Most of what I build sits at the boundary between hardware and the cloud — reading a signal, whether that's network traffic, a vibration, or an image upload, and deciding what to do about it. I care about the parts of engineering that are easy to skip: the on-device fault case, the persistence layer under load, the interlock that fires before something breaks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section alt" id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Projects</p>
+        <h2 class="section-title">Selected work</h2>
+      </div>
+
+      <div class="projects">
+
+        <!-- DevHire -->
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none"><circle cx="7" cy="16" r="2.4" stroke="#D6A756" stroke-width="1.6"/><circle cx="16" cy="7" r="2.4" stroke="#D6A756" stroke-width="1.6"/><circle cx="16" cy="25" r="2.4" stroke="#D6A756" stroke-width="1.6"/><circle cx="25" cy="16" r="2.4" stroke="#D6A756" stroke-width="1.6"/><path d="M9 15 L14 9 M9 17 L14 23 M18 8 L23 15 M18 24 L23 17" stroke="#D6A756" stroke-width="1.4"/></svg>
+          </div>
+          <div>
+            <div class="card-top">
+              <h3>DevHire — Full-Stack Applicant Tracking System</h3>
+              <span class="tag">Full-stack</span>
+            </div>
+            <p class="desc">A recruitment platform covering the full hiring lifecycle — listings, applications, and a role-based admin hub — with hybrid local/social authentication and real-time status tracking. Verified with 36 passing unit tests and full Compodoc documentation.</p>
+            <div class="tags">
+              <span class="chip">Angular 21</span>
+              <span class="chip">Flask</span>
+              <span class="chip">MongoDB</span>
+              <span class="chip">JWT / Auth0</span>
+            </div>
+            <a class="link" href="https://github.com/yasintha06/DevHire" target="_blank" rel="noopener">View repository →</a>
+          </div>
+        </article>
+
+        <!-- PixelShare -->
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M6 22 C6 16 9 12 16 12 C23 12 26 16 26 22" stroke="#D6A756" stroke-width="1.6" stroke-linecap="round"/><path d="M6 22 H26" stroke="#D6A756" stroke-width="1.6" stroke-linecap="round"/><circle cx="16" cy="12" r="1.6" fill="#D6A756"/></svg>
+          </div>
+          <div>
+            <div class="card-top">
+              <h3>PixelShare — Cloud-Native Photo Sharing Platform</h3>
+              <span class="tag">Cloud</span>
+            </div>
+            <p class="desc">A full CRUD REST API for uploading, browsing and managing photos, built on Microsoft Azure. Metadata lives in Cosmos DB, image files in Blob Storage, and Application Insights watches the whole pipeline end-to-end.</p>
+            <div class="tags">
+              <span class="chip">Node.js / Express</span>
+              <span class="chip">Azure Cosmos DB</span>
+              <span class="chip">Azure Blob Storage</span>
+              <span class="chip">Application Insights</span>
+            </div>
+            <a class="link" href="https://github.com/yasintha06/PixelShare" target="_blank" rel="noopener">View repository →</a>
+          </div>
+        </article>
+
+        <!-- LNSM -->
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M16 4 L27 8 V15 C27 22 22 26 16 28 C10 26 5 22 5 15 V8 Z" stroke="#D6A756" stroke-width="1.6" stroke-linejoin="round"/><path d="M11 16 L14 19 L21 12" stroke="#D6A756" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="card-top">
+              <h3>LNSM — Lightweight Network Security Monitor</h3>
+              <span class="tag">COM668 · Final-year project</span>
+            </div>
+            <p class="desc">A real-time intrusion detection system that captures TCP/UDP/ICMP traffic at the packet level, flags brute-force attempts, port scans and data exfiltration, and can block a threat at the OS firewall with one click — with live threat geolocation on the dashboard.</p>
+            <div class="tags">
+              <span class="chip">Python</span>
+              <span class="chip">Flask REST API</span>
+              <span class="chip">SQLite (WAL mode)</span>
+              <span class="chip">Chart.js</span>
+            </div>
+            <a class="link" href="https://github.com/yasintha06/LNSM" target="_blank" rel="noopener">View repository →</a>
+          </div>
+        </article>
+
+        <!-- PropGuard -->
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M4 18 C7 18 7 10 10 10 C13 10 13 24 16 24 C18 24 18 18 20 18 L28 18" stroke="#D6A756" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="card-top">
+              <h3>PropGuard — Embedded TinyML Vibration Detector</h3>
+              <span class="tag">COM683 · Coursework</span>
+            </div>
+            <p class="desc">A pre-flight safety check for drones: a frame-mounted accelerometer reads vibration, an on-device model classifies the fault in under 100ms, and a relay physically interlocks takeoff if something's wrong — trained on self-collected motor data, cross-checked against a published UAV vibration dataset.</p>
+            <div class="tags">
+              <span class="chip">Arduino Nano</span>
+              <span class="chip">TinyML / Edge Impulse</span>
+              <span class="chip">GY-521 (MPU-6050)</span>
+              <span class="chip">Relay interlock</span>
+            </div>
+            <span class="link disabled">Coursework project — code on request</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Skills</p>
+        <h2 class="section-title">Core skills &amp; stack</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skills-group">
+          <h4>Core skills</h4>
+          <div class="chipwrap">
+            <span class="chip">Software Development (OOP)</span>
+            <span class="chip">Database Systems</span>
+            <span class="chip">Systems Architecture</span>
+            <span class="chip">Systems Security</span>
+            <span class="chip">Artificial Intelligence</span>
+            <span class="chip">Networks &amp; Communications</span>
+            <span class="chip">Cloud-Native Development</span>
+            <span class="chip">Data Analytics</span>
+            <span class="chip">Web Applications Development</span>
+            <span class="chip">Human-Computer Interaction</span>
+            <span class="chip">Project &amp; Process Management</span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <h4>Languages &amp; frameworks</h4>
+          <div class="chipwrap">
+            <span class="chip">Python</span>
+            <span class="chip">Flask</span>
+            <span class="chip">Node.js / Express</span>
+            <span class="chip">TypeScript</span>
+            <span class="chip">Angular</span>
+            <span class="chip">SQL</span>
+          </div>
+          <h4 style="margin-top:22px;">Cloud, data &amp; tools</h4>
+          <div class="chipwrap">
+            <span class="chip">Microsoft Azure</span>
+            <span class="chip">Cosmos DB</span>
+            <span class="chip">Blob Storage</span>
+            <span class="chip">MongoDB</span>
+            <span class="chip">SQLite</span>
+            <span class="chip">Arduino</span>
+            <span class="chip">Git / GitHub</span>
+            <span class="chip">JWT / OAuth</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section alt" id="education">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Education</p>
+        <h2 class="section-title">Background</h2>
+      </div>
+      <div class="edu-item">
+        <div>
+          <h4>BSc (Hons) Computing Systems — Ulster University, London Campus</h4>
+          <p>Relevant modules: Edge &amp; Embedded Intelligence (COM683), Computing Project (COM668)</p>
+        </div>
+        <span class="when">Jan 2024 – Sep 2026 (expected)</span>
+      </div>
+      <div class="edu-item">
+        <div>
+          <h4>GCE Advanced Level — Physical Science Stream</h4>
+          <p>Pure Mathematics (C) · Chemistry (C) · Physics (C)</p>
+        </div>
+        <span class="when">2022</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2>Let's talk</h2>
+      <p>Open to graduate roles across full-stack, cloud and platform engineering. Happy to walk through any of these projects in more detail.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:yasinthalakshan06@gmail.com">Email me</a>
+        <a class="btn btn-ghost" href="https://github.com/yasintha06" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/yasintha-lakshan-a416a1325" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; <span id="year"></span> Yasintha Agampodi</p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
